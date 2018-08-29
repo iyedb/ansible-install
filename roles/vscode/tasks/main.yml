@@ -1,0 +1,19 @@
+
+- name: 'Add vscode apt signing key'
+  apt_key:
+    url: '{{ key_url }}'
+    state: present
+  become: yes
+
+- name: 'Add vscode apt repo'
+  apt_repository:
+    repo: '{{ deb_repo }}'
+    state: present
+  become: yes
+
+
+- name: 'Install vscode'
+  apt:
+    name: code
+    update_cache: yes
+  become: yes
